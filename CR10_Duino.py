@@ -150,3 +150,22 @@ class SerialDuino:
                 self.sendCommand('G0 F' + str(self.FeedRateXY)) # Set the feedrate to the desired value
                 print('Finished homing')
                 break
+   #Added Funtions
+   def MoveUp(self,firstX,firstY,lastZ):
+       
+       CurrPos=self.getCurrentPosition()# give the first posiion as [x0,y0,z0]
+       self.home()
+       self.driveToPosition(firstX,firstY,0)#to drive to the position[0,0,height]
+       firstZ=CurrPos[2]
+       for i in range(firstZ,lastZ):
+  	 #printer.driveToHeight(height)
+  	 self.driveToPosition(firstX,firstY,firstZ+i)#to drive to the position[0,0,height]
+    
+    def MoveDown(self,firstX,firstY,lastZ):
+       
+       CurrPos=self.getCurrentPosition()# give the first posiion as [x0,y0,z0]
+       firstZ=CurrPos[2]
+       for j in range(firstZ,lastZ):
+  	 #printer.driveToHeight(height)
+  	 self.driveToPosition(firstX,firstY,firstZ-j)#to drive to the position[0,0,height]
+   def 
