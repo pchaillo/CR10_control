@@ -168,4 +168,4 @@ class SerialDuino:
        for j in range(firstZ,lastZ):
   	 #printer.driveToHeight(height)
   	 self.driveToPosition(firstX,firstY,firstZ-j)#to drive to the position[0,0,height]
-   def 
+
