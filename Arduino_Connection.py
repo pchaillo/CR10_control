@@ -14,7 +14,7 @@ import CR10_Duino as CR10_test
 import serial as sr
 import numpy as np
 import matplotlib.pyplot as plt
-class Printer_Arduino:
+class Arduino:
  def __init__(self):
   self.Port=''
   self.BaudRate=''
@@ -25,7 +25,7 @@ class Printer_Arduino:
   self.Port = input(" Enter the Port: ")
   self.Baudrate =int( input(" Enter the Baudrate: "))
   arduino=sr.Serial(self.Port,self.Baudrate)#create an instance arduino from the serial class
-arduino=Printer_Arduino()
+arduino=Arduino()
 arduino.Put_Arduino_Parameters()
 
 
