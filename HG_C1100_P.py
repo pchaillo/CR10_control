@@ -7,7 +7,7 @@ Created on Tue Jan 25 17:23:53 2022
 """
 
 import serial
-
+import time
 
 class SerialDuino:
 
@@ -15,7 +15,7 @@ class SerialDuino:
         # PARAM7TRES
         self.port = '/dev/ttyACM0'
         self.baud = 115200
-
+       
         #INIT
         self.dist = 0
         self.ser = serial.Serial(self.port,self.baud) 
@@ -39,5 +39,13 @@ class SerialDuino:
 
     def GetDist(self):
         # print(str(self._pres)) # for debug
+        
         return self.dist
+        
+    def Calcul_Strain(self):
+       lo=83
+       z1 = 12.18
+       z2 = abs(self.GetDist())
+       deltaz= abs(z1-z2)
+       return deltaz*100/lo   
 

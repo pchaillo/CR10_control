@@ -22,7 +22,7 @@ void loop(void) {
        Serial.println(refresistor2);
        //Serial.print(vout);
        Serial.flush();
-       delay(300);
-     
+       //delay(300);
+       delay(1000);
  }   
    

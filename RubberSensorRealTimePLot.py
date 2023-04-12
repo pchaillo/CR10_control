@@ -25,7 +25,7 @@ def RubberRead():
 def update(i):
     # create a real-time distance read from the sensor
     res = RubberRead()
-    time.append(i)
+    time.append(0.29*i)
     resistance.append(res)
 
     # update the plot data
@@ -33,8 +33,8 @@ def update(i):
     line.set_ydata(resistance)
 
     # set the axis limits
-    ax.set_xlim(min(time), max(time))
-    ax.set_ylim(1, 2)
+    ax.set_xlim(100, 500)
+    ax.set_ylim(2, 4)
 
     # return the updated line object
     return line,

@@ -2,6 +2,7 @@ import HG_C1100_P as ls
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import RubberSensor as rs
+import time
 # initialiser les capteurs
 rubsensor = rs.RubberSerialDuino()
 lasensor = ls.SerialDuino()
@@ -26,7 +27,8 @@ def readSensors():
     rubsensor.UpdateSensors()
     lasensor.UpdateSensors()
     resistance = rubsensor.GetRes()
-    deformation= lasensor.GetDist()
+    deformation= lasensor.Calcul_Strain()
+    print(deformation)
     return deformation, resistance
 
 
@@ -44,15 +46,17 @@ def update(i):
     line.set_ydata(resistances)
 
     # définir les limites de l'axe
-    ax.set_xlim(0, 100)
-    ax.set_ylim(0, 5)
+    ax.set_xlim(0, 60)
+    ax.set_ylim(1, 3)
 
     # retourner l'objet de ligne mis à jour
     return line,
+def Real_Plot():
+ # créer l'objet d'animation
+ time.sleep(41)
+ ani = animation.FuncAnimation(fig, update, frames=range(1000000))
 
-# créer l'objet d'animation
-ani = animation.FuncAnimation(fig, update, frames=range(1000000))
-
-# afficher le graphique
-plt.show()
+ # afficher le graphique
+ plt.show()
+Real_Plot() 
 
