@@ -34,10 +34,14 @@ def first(z):
  X = 0
  Y = 100
  printer.driveToPosition(X,Y,z)
+
+ #time.sleep(40)
+
  #X = 0
  #Y = 100
  #Z = 50
  #printer.driveToPosition(X,Y,Z)
+
  
 def traction(zmin,zmax,step):
   #RL.Real_Plot()
@@ -49,12 +53,14 @@ def compression(zmax,zmin,step):
   for z in reversed(range(zmin,zmax,step)):
    Downz(z)
    time.sleep(1)   
+
 #height=20
 
 printer = CR10_test.SerialDuino()
 #printer.purgeSerial()
 printer.home()
 printer.purgeSerial()
+
 first(70)
 #time.sleep(10)
 #traction(70,105,5)
@@ -66,6 +72,5 @@ first(70)
 #time.sleep(120)#to put the base
 
 
-	
-	
+
 

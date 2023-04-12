@@ -150,3 +150,5 @@ class SerialDuino:
                 self.sendCommand('G0 F' + str(self.FeedRateXY)) # Set the feedrate to the desired value
                 print('Finished homing')
                 break
+ 
+

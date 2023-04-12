@@ -2,7 +2,9 @@ import HG_C1100_P as ls
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import RubberSensor as rs
+
 import time
+
 # initialiser les capteurs
 rubsensor = rs.RubberSerialDuino()
 lasensor = ls.SerialDuino()
@@ -27,8 +29,10 @@ def readSensors():
     rubsensor.UpdateSensors()
     lasensor.UpdateSensors()
     resistance = rubsensor.GetRes()
+
     deformation= lasensor.Calcul_Strain()
     print(deformation)
+
     return deformation, resistance
 
 
@@ -59,4 +63,5 @@ def Real_Plot():
  # afficher le graphique
  plt.show()
 Real_Plot() 
+
 

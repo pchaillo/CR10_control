@@ -19,9 +19,11 @@ class RubberSerialDuino:
 
         ligne_cut = ligne_raw.split("'")
         ligne_cut2 = ligne_cut[1].split("\\")
+
         #print("ligneraw:"+str(ligne_raw))
         #print("lignecut:"+str(ligne_cut))
         #print("lignecut2:"+str(ligne_cut2))
+
 
         try:
             self.res = float(ligne_cut2[0])
