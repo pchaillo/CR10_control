@@ -107,8 +107,8 @@ compression(105,70,3,zs)
 #print(printer_strain)
 print(sensor_strain)
 print(resistor)
-plt.plot(sensor_strain,resistor,color='red', linewidth = 1,
-         marker='o', markerfacecolor='blue', markersize=3)
+plt.plot(sensor_strain,resistor,color='black', linewidth = 1,
+         marker='o', markerfacecolor='black', markersize=3)
 plt.show()
 #Position = height
 #printer.driveToHeight(Position)

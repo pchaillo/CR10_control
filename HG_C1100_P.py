@@ -28,12 +28,12 @@ class SerialDuino:
 
         ligne_cut = ligne_raw.split("'")
         ligne_cut2 = ligne_cut[1].split("\\")
-       
+        ligne_cut3 = ligne_cut2[0].split(";")
 
-        print(ligne_cut2) # for debug
+        #print(ligne_cut3[0]) # for debug
 
         try:
-            self.dist = float(ligne_cut2[0])
+            self.dist = float(ligne_cut3[0])
 
         except:
             print('Attention, lecture impossible')

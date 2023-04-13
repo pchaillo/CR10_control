@@ -19,14 +19,14 @@ class RubberSerialDuino:
 
         ligne_cut = ligne_raw.split("'")
         ligne_cut2 = ligne_cut[1].split("\\")
-
+        ligne_cut3 = ligne_cut2[0].split(";")
         #print("ligneraw:"+str(ligne_raw))
         #print("lignecut:"+str(ligne_cut))
-        #print("lignecut2:"+str(ligne_cut2))
+        print("lignecut3:"+str(ligne_cut3[1]))
 
 
         try:
-            self.res = float(ligne_cut2[0])
+            self.res = float(ligne_cut3[1])
 
         except:
             print('Attention, lecture impossible')
