@@ -45,13 +45,16 @@ void loop() {
     float DistInMM = (MeanA0/1023)*70 - 35 + 0.18; // Convert to mm and adjust with a small factor to match readings from display on the backside of the device
     //Serial.print(MeanA0);
     //Serial.print(",");
-    Serial.println(DistInMM);
+    Serial.print(DistInMM);
+    Serial.print(";");
     ReadingResistor=RubberSensorReading();
+    delay(10);
     Serial.println(ReadingResistor);
+    delay(10);
     Counter = 0;
     SumA0 = 0;
     Serial.flush();
-    delay(300);   
+    delay(1000);   
   }
   
 

@@ -28,8 +28,9 @@ class SerialDuino:
 
         ligne_cut = ligne_raw.split("'")
         ligne_cut2 = ligne_cut[1].split("\\")
+       
 
-        # print(ligne_cut2) # for debug
+        print(ligne_cut2) # for debug
 
         try:
             self.dist = float(ligne_cut2[0])
@@ -44,9 +45,8 @@ class SerialDuino:
         
         return self.dist
         
-    def Calcul_Strain(self):
+    def Calcul_Strain(self,z1):
        lo=83
-       z1 = 12.18
        z2 = abs(self.GetDist())
        deltaz= abs(z1-z2)
        return deltaz*100/lo   

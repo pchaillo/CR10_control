@@ -34,5 +34,4 @@ class RubberSerialDuino:
 
     def GetRes(self):
         # print(str(self._pres)) # for debug
-        return self.res
-
+      return self.res
