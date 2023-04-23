@@ -113,7 +113,6 @@ plt.show()
 #Position = height
 #printer.driveToHeight(Position)
 #time.sleep(120)#to put the base
-
-
+########
 
 
