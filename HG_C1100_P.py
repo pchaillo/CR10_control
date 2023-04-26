@@ -22,7 +22,12 @@ class SerialDuino:
         self.ser = serial.Serial(self.port,self.baud) 
 
     def UpdateSensors(self):
-
+        #flushing
+        self.ser.flush()
+        self.ser.flushInput()
+        self.ser.flushOutput()
+        time.sleep(0.1)
+        #------------------------------
         ligne_raw = str(self.ser.readline())
         # print(ligne_raw)
 
@@ -33,7 +38,7 @@ class SerialDuino:
         #print(ligne_cut3[0]) # for debug
 
         try:
-            self.dist = float(ligne_cut3[0])
+            self.dist = float(ligne_cut3[1])
 
         except:
             print('Attention, lecture impossible')
@@ -45,10 +50,13 @@ class SerialDuino:
         
         return self.dist
         
-    def Calcul_Strain(self,z1):
-       lo=83
+    def Calcul_Strain(self,z1,lo):
        z2 = abs(self.GetDist())
        deltaz= abs(z1-z2)
-       return deltaz*100/lo   
-
-
+       return round(deltaz*100/lo,2)   
+    
+#rubsensor=SerialDuino()
+#while(1):
+    #rubsensor.UpdateSensors()
+    #res = rubsensor.Calcul_Strain(2.29,94)
+    #print(res)

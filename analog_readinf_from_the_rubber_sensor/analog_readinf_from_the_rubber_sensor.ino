@@ -23,6 +23,6 @@ void loop(void) {
        //Serial.print(vout);
        Serial.flush();
        //delay(300);
-       delay(1000);
+       
  }   
    

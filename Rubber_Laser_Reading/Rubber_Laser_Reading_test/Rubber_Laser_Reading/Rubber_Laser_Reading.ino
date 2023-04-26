@@ -42,14 +42,14 @@ void loop() {
   if (Counter >= WindowSize)
   {
     float MeanA0 = SumA0 / WindowSize;
-    float DistInMM = (MeanA0 / 1023) * 70 - 35 + 0.18; // Convert to mm and adjust with a small factor to match readings from display on the backside of the device
+    float DistInMM = (MeanA0 / 1023) * 70 - 35 + 0.18+0.66; // Convert to mm and adjust with a small factor to match readings from display on the backside of the device
     //Serial.print(MeanA0);
     //Serial.print(",");
     ReadingResistor = RubberSensorReading();
-    Serial.print(DistInMM);
+    Serial.print(ReadingResistor);
     Serial.print(";");
-    Serial.println(ReadingResistor);
-    delay(1000);
+    Serial.println(DistInMM);
+    delay(100);
     Counter = 0;
     SumA0 = 0;
     Serial.flush();
