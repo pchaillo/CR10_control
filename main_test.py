@@ -23,13 +23,14 @@ import RubberSensor as rs
 lasensor=ls.SerialDuino()
 rubsensor=rs.RubberSerialDuino()
 
+
 #plot
-# set the labels of the plot
-plt.xlabel('strain(%)')
-plt.ylabel('resistance (ohm)')
-plt.title('resistance versus Time')
+
+
+
+
 #initialiser les listes
-printer_strain_t,sensor_strain_t,printer_strain_c,sensor_strain_c,resistor_t,resistor_c=[],[],[],[],[],[]
+pourc_resistor_t,pourc_resistor_c,printer_strain_t,sensor_strain_t,printer_strain_c,sensor_strain_c,resistor_t,resistor_c=[],[],[],[],[],[],[],[]
 
 #printer move functions
 
@@ -66,15 +67,16 @@ def RubberRead():
     return res
     
 # to do the traction test 
-def traction(zmin,zmax,step,zs,lo):
+def traction(zmin,zmax,step,zs,lo,Ro):
   #RL.Real_Plot()
   
   for z in range(zmin,zmax,step):
    Upz(z)
-   printer_strain_t.append(z-zmin)
+   printer_strain_t.append(((z-zmin)/zmin)*100)
    sensor_strain_t.append(laserRead(zs,lo))
    resistor_t.append(RubberRead())
-   time.sleep(1)
+   pourc_resistor_t.append(round(((RubberRead()-Ro)*100)/Ro,1))
+   time.sleep(2)
    
 #def CheckLogic(arr):
     
@@ -84,14 +86,16 @@ def traction(zmin,zmax,step,zs,lo):
             
 
 # to do the compression test   
-def compression(zmax,zmin,step,zs,lo):
-  
+def compression(zmax,zmin,step,zs,lo,Ro):
   for z in reversed(range(zmin,zmax,step)):
    Downz(z)
-   printer_strain_c.append(z-zmin)
+   print(z)
+   printer_strain_c.append(((z-zmin)/zmin)*100)
    sensor_strain_c.append(laserRead(zs,lo))
    resistor_c.append(RubberRead())
-   time.sleep(1)
+   pourc_resistor_c.append(round(((RubberRead()-Ro)*100)/Ro,1))
+   time.sleep(2)
+   print(z)
       
 
 #height=20
@@ -105,31 +109,41 @@ printer.home()
 printer.purgeSerial()
 
 #go to the first point and put the sensor in the correct place
-first(80)
+first(50)
 pause=input("if you want to continue,click on any button")
-zs=float(input("put the value represented on the sensor: "))
 lo=float(input("put the initial lenght of the sensor"))
-traction(80,105,1,zs,lo)
-time.sleep(1)
-compression(105,80,1,zs,lo)
-print(resistor_t)
-print(resistor_c)
+lasensor.UpdateSensors()
+zs= lasensor.GetDist()
+Ro=RubberRead()
+traction(50,80,1,zs,lo,Ro)
+time.sleep(2)
+compression(80,50,1,zs,lo,Ro)
+# set the labels of the plot
+plt.xlabel('strain(%)')
+plt.ylabel('resistance (ohm)')
+plt.title('resistance versus Time')
+
+plt.subplot(121)
 plt.plot(sensor_strain_t,resistor_t,color='black', linewidth = 1,
          marker='o', markerfacecolor='black', markersize=3)
 plt.plot(sensor_strain_c,resistor_c,color='red', linewidth = 1,
          marker='o', markerfacecolor='red', markersize=3)
+plt.xlabel('laser_strain(%)')
+plt.ylabel('resistance (ohm)')
+plt.subplot(122)
+plt.plot(printer_strain_t,resistor_t,color='black', linewidth = 1,
+         marker='o', markerfacecolor='black', markersize=3, label="traction")
+plt.plot(printer_strain_c,resistor_c,color='red', linewidth = 1,
+         marker='o', markerfacecolor='red', markersize=3,label="repulsion")
+plt.xlabel('printer_strain(%)')
+plt.ylabel('resistance (ohm)')
+
+plt.legend()
 plt.show()
 #Position = height
 #printer.driveToHeight(Position)
-#time.sleep(120)#to put the base
+#time.sleep(120)#to put the basessss
 ########
-
-pause=input("if you want to continue,click on any button")
-plt.plot(printer_strain_t,resistor_t,color='black', linewidth = 1,
-         marker='o', markerfacecolor='black', markersize=3)
-plt.plot(printer_strain_c,resistor_c,color='red', linewidth = 1,
-         marker='o', markerfacecolor='red', markersize=3)
-plt.show()
 
 
 

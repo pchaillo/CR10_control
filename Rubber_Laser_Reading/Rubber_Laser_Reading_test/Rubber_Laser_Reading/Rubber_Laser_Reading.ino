@@ -19,7 +19,7 @@ bool Beginning = true;
 //----------------------------------------------------------------
 float RubberSensorReading()
 {
-  value = analogRead(RUBBERCORDPIN);     //Read the value                                           //Just like we did earlier
+  value = (float)analogRead(RUBBERCORDPIN);     //Read the value                                           //Just like we did earlier
   vout = (5.0 / 1023.0) * value;         // Calculates the voltage
   refresistor2 = (vout / (vin - vout)) * refresistor1;
   return refresistor2;
@@ -42,14 +42,14 @@ void loop() {
   if (Counter >= WindowSize)
   {
     float MeanA0 = SumA0 / WindowSize;
-    float DistInMM = (MeanA0 / 1023) * 70 - 35 + 0.18+0.66; // Convert to mm and adjust with a small factor to match readings from display on the backside of the device
+    float DistInMM = (MeanA0 / 1023) * 70 - 35 + 0.18+0.64+0.7; // Convert to mm and adjust with a small factor to match readings from display on the backside of the device
     //Serial.print(MeanA0);
     //Serial.print(",");
     ReadingResistor = RubberSensorReading();
-    Serial.print(ReadingResistor);
+    Serial.print(ReadingResistor,2);
     Serial.print(";");
-    Serial.println(DistInMM);
-    delay(100);
+    Serial.println(DistInMM,1);
+    delay(300);
     Counter = 0;
     SumA0 = 0;
     Serial.flush();
