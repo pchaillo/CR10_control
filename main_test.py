@@ -138,6 +138,13 @@ plt.plot(printer_strain_c,resistor_c,color='red', linewidth = 1,
 plt.xlabel('printer_strain(%)')
 plt.ylabel('resistance (ohm)')
 
+plt.subplot(131)
+plt.plot(t,resistor_t,color='black', linewidth = 1,
+         marker='o', markerfacecolor='black', markersize=3)
+
+plt.xlabel('time(sec)')
+plt.ylabel('resistance (ohm)')
+
 plt.legend()
 plt.show()
 #Position = height
