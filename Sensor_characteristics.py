@@ -147,10 +147,10 @@ def RubberRead():
 
 def accuracy(lenght,resistor_data_sheet,number_of_samples):
     """
-    This function takes two inputs (lenght,resistor_data_sheet,number_of_samples) and return:
-        1. error_list:the difference list between the linear and the actual measured value of the electrical list
-        2. max_error: the non_linearity error percentage between the linear one and the actual one
-        3. slope: sensitivity of the linear function
+    This function takes three inputs (lenght,resistor_data_sheet,number_of_samples) and return:
+        1. res_measure:the actual measured value list 
+        2. avg_resis: the average of measured values
+        3. absolute_error= average measured value- resistor represented in the datasheet
     and plot the measured value with the true value to visualize the absolute error
     
     """
