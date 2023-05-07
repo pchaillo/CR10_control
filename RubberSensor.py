@@ -6,7 +6,7 @@ class RubberSerialDuino:
 
     def __init__(self):
         # PARAM7TRES
-        self.port = '/dev/ttyACM1'
+        self.port = '/dev/ttyACM0'
         self.baud = 115200
 
         #INIT
